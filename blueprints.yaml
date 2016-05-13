@@ -1,0 +1,62 @@
+name: QQ Business
+version: 1.0.0
+description: "QQ Business plugin lets you easyly embed the QQ live chat & tracking code to the Grav website."
+icon: qq
+author:
+  name: Wayne Ho
+  email: hi@wayn3h0.com
+  url: http://wayn3h0.com
+homepage: https://github.com/wayn3h0/grav-plugin-qqbusiness
+keywords: qq, plugin, live chat, tracking, analytics
+bugs: https://github.com/wayn3h0/grav-plugin-qqbusiness/issues
+license: Apache License 2.0
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin Status
+      hightlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    selector:
+      type: text
+      size: medium
+      label: Node ID
+      help: ID Of HTML Node Where Is Live Chat Button
+
+    nameAccount:
+      type: text
+      size: medium
+      label: Account
+      help:  Account Of QQ Business
+
+    aty:
+      type: text
+      size: medium
+      label: Chat Type
+      help: Type Of Chat
+
+    a:
+      type: text
+      size: medium
+      label: Agent Account
+      help:  Account Of Customer Service Agent (Ignore If Type Is 0)
+
+    visitor:
+      type: toggle
+      label: Visitor
+      help: Enable/Disable Visitor Functions
+      hightlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
