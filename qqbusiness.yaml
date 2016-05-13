@@ -1,0 +1,6 @@
+enabled: true               # enable/disable the plugin
+nameAccount: ''
+selector: ''
+aty: ''
+a: ''
+visitor: true               # enable/disable vistor function
