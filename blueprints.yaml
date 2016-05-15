@@ -25,6 +25,12 @@ form:
       validate:
         type: bool
 
+    title:
+      type: text
+      size: medium
+      label: Title
+      help: Title Of Button
+
     selector:
       type: text
       size: medium
