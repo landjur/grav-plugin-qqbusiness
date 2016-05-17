@@ -9,15 +9,28 @@ class QQBusinessPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onAssetsInitialized' => ['onAssetsInitialized', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
     }
+    
+    public function onPluginsInitialized() {
+      if ($this->isAdmin()) {
+        return;
+      }
+
+      $this->enable([
+          'onAssetsInitialized' => ['onAssetsInitialized', 0],
+          'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+      ]);
+    }
+
+    // Add current directory to twig lookup paths.
+    public function onTwigTemplatePaths() {
+      $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+    }
+
     public function onAssetsInitialized()
     {
-        if ($this->isAdmin()) {
-            return;
-        }
-
         $nameAccount = trim($this->config->get('plugins.qqbusiness.nameAccount'));
         $selector = trim($this->config->get('plugins.qqbusiness.selector'));
         $aty = trim($this->config->get('plugins.qqbusiness.aty'));
@@ -33,6 +46,8 @@ class QQBusinessPlugin extends Plugin
               $code2 = "BizQQWPA.visitor({nameAccount:'{$nameAccount}'});";
               $this->grav['assets']->addInlineJs($code2, null, 'bottom');
             }
+
+            $this->grav['assets']->addCss('plugin://qqbusiness/css/qqbusiness.css');
           }
         }
     }
