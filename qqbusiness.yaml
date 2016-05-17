@@ -1,4 +1,5 @@
 enabled: true               # enable/disable the plugin
+position: 'head'
 title: ''
 nameAccount: ''
 selector: ''

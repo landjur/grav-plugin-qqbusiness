@@ -12,7 +12,7 @@ class QQBusinessPlugin extends Plugin
             'onPluginsInitialized' => ['onPluginsInitialized', 0]
         ];
     }
-    
+
     public function onPluginsInitialized() {
       if ($this->isAdmin()) {
         return;
@@ -31,24 +31,31 @@ class QQBusinessPlugin extends Plugin
 
     public function onAssetsInitialized()
     {
+        $position = trim($this->config->get('plugins.qqbusiness.position'));
         $nameAccount = trim($this->config->get('plugins.qqbusiness.nameAccount'));
         $selector = trim($this->config->get('plugins.qqbusiness.selector'));
         $aty = trim($this->config->get('plugins.qqbusiness.aty'));
         $a = trim($this->config->get('plugins.qqbusiness.a'));
         $visitor = trim($this->config->get('plugins.qqbusiness.visitor'));
-        if ($selector) {
-          if ($nameAccount) {
+        if ($selector !='' && $nameAccount !='') {
             $url = "http://wpa.b.qq.com/cgi/wpa.php";
-            $this->grav['assets']->addJs($url);
-            $code1 = "BizQQWPA.addCustom({aty:'{$aty}', a:'{$a}', nameAccount:'{$nameAccount}', selector:'{$selector}'});";
-            $this->grav['assets']->addInlineJs($code1, null, 'bottom');
-            if ($visitor) {
-              $code2 = "BizQQWPA.visitor({nameAccount:'{$nameAccount}'});";
-              $this->grav['assets']->addInlineJs($code2, null, 'bottom');
+            $codeCore = "BizQQWPA.addCustom({aty:'{$aty}', a:'{$a}', nameAccount:'{$nameAccount}', selector:'{$selector}'});";
+            $codeVisitor = "BizQQWPA.visitor({nameAccount:'{$nameAccount}'});";
+            if ($position == '' || $position == 'head') {
+              $this->grav['assets']->addJs($url);
+              $this->grav['assets']->addInlineJs($codeCore);
+              if ($visitor) {
+                $this->grav['assets']->addInlineJs($codeVisitor);
+              }
+            } else {
+              $this->grav['assets']->addJs($url, null, $position);
+              $this->grav['assets']->addInlineJs($codeCore, null, $position);
+              if ($visitor) {
+                $this->grav['assets']->addInlineJs($codeVisitor, null, $position);
+              }
             }
 
             $this->grav['assets']->addCss('plugin://qqbusiness/css/qqbusiness.css');
-          }
         }
     }
 }
