@@ -1,0 +1,29 @@
+#qqbusiness {
+    z-index: 9999;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}
+#qqbusiness #qqbusiness-button {
+    display: inline-block;
+    zoom: 1;
+    width: 120px;
+    height: 40px;
+    overflow: hidden;
+    background-image: url(http://cdn.b.qq.com/account/bizqq/images/wpa/wpa_a04.png) !important;
+    _background: 0;
+    _filter: progid: DXImageTransform.Microsoft.AlphaImageLoader(src='http://cdn.b.qq.com/account/bizqq/images/wpa/wpa_a04.png', sizingMethod='scale');
+}
+#qqbusiness #qqbusiness-button a, #qqbusiness #qqbusiness-button a:link, #qqbusiness #qqbusiness-button a:visited, #qqbusiness #qqbusiness-button a:hover {
+    position: absolute;
+    display: block;
+    zoom: 1;
+    width: 110px;
+    height: 38px;
+    line-height: 40px;
+    padding: 1px 0 0 33px;
+    text-align: center;
+    color: #af0000;
+    font-weight: bold;
+    font-size: 12px;
+}
