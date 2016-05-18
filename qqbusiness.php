@@ -48,7 +48,7 @@ class QQBusinessPlugin extends Plugin
                 $this->grav['assets']->addInlineJs($codeVisitor);
               }
             } else {
-              $this->grav['assets']->addJs($url, null, $position);
+              $this->grav['assets']->addJs($url, null, true, null, $position);
               $this->grav['assets']->addInlineJs($codeCore, null, $position);
               if ($visitor) {
                 $this->grav['assets']->addInlineJs($codeVisitor, null, $position);
